@@ -5,13 +5,13 @@
 
 
 (defn -main []
-  (println "Pick a Category:")
-  (println "Furniture")
-  (println "Alcohol")
-  (println "Toiletries")
-  (println "Shoes")
-  (println "Food")
-  (println "Jewelry")
+  (print "Pick a Category: ")
+  (print "  Furniture")
+  (print "  Alcohol")
+  (print "  Toiletries")
+  (print "  Shoes")
+  (print "  Food")
+  (print "  Jewelry")
   (let [purchases (slurp "purchases.csv") ;; stores file into purchases
         purchases (str/split-lines purchases) ;; splits purchases object by line
         purchases (map (fn [line] ;; pass purchases as param and remove commas
@@ -27,4 +27,4 @@
                             (= (get line "category") category))
                           purchases)
         file-json (json/write-str purchases)]
-    (spit (str "filtered_purchases_" category ".json") file-json)))
+    (spit (str "filtered_purchases_" category ".json") file-json) category))
